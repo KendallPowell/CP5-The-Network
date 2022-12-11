@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-info px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <div>The Network!</div>
+        <div class="mx-5">Network</div>
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -11,11 +11,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
-        <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
-          </router-link>
-        </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <Login />

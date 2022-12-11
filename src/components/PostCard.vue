@@ -2,9 +2,10 @@
   <div class="post elevation-2 p-3 row">
     <div class="d-flex align-items-center gap-2">
       <div class="col-7 d-flex align-items-center">
-        <!-- <RouterLink> -->
-        <img :src="post.creator.picture" alt="account-picture" class="creatorImg">
-        <!-- </RouterLink> -->
+        <RouterLink :to="{ name: 'Profile', params: { id: post.creatorId } }">
+          <img :src="post.creator.picture" alt="account-picture" class="creatorImg"
+            :title="`Go to ${post.creator.name}'s Profile Page'`">
+        </RouterLink>
         <div class="row">
           <p class="m-0" title="Poster">{{ post.creator.name }}</p>
           <p>{{ post.createdAt }}</p>
@@ -17,17 +18,19 @@
     <div class="d-flex flex-column ">
       <div class="d-flex align-items-center justify-content-between">
         {{ post.body }}
-        <img class="img-fluid img-url" :src="post.imgUrl" alt="">
+        <img class="img-fluid img-url" :src="post.imgUrl" v-if="post.imgUrl"
+          alt="hmmm uploading base-64 image? kind of cringe bro..">
       </div>
     </div>
   </div>
 </template>
 
-
 <script>
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import { Post } from "../models/Post.js";
+import { RouterLink } from 'vue-router';
+import { useRoute } from 'vue-router';
 
 export default {
   props: {
@@ -36,13 +39,15 @@ export default {
       required: true
     },
   },
-  setup() {
+  setup(props) {
+    const route = useRoute()
     return {
       get ComputeFullDate() {
-        date.toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })
+        date.toLocaleDateString("en-us", { weekday: "long", year: "numeric", month: "short", day: "numeric" });
       }
-    }
-  }
+    };
+  },
+  components: { RouterLink }
 };
 </script>
 
