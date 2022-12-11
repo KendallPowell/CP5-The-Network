@@ -5,9 +5,6 @@
       <div v-for="p in AppState.posts" class="col-12 col-md-7 p-4">
         <PostCard :post="p" />
       </div>
-      <!-- <div class="col-12 col-md-3">
-        <AdCard />
-      </div> -->
     </section>
   </div>
 

@@ -24,6 +24,11 @@ class PostsService {
     AppState.posts.push(res.data)
   }
 
+  async removePost(id) {
+    const res = await api.delete('api/posts/' + id)
+    logger.log('[removePost]', res.data)
+  }
+
 
 }
 

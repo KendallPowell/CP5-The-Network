@@ -8,10 +8,12 @@
         </RouterLink>
         <div class="row">
           <p class="m-0" title="Poster">{{ post.creator.name }}</p>
-          <p>{{ post.createdAt }}</p>
+          <p>{{ ComputeFullDate(post.createdAt) }}</p>
         </div>
       </div>
       <div class="col-5 text-end">
+        <button v-if="(post.creatorId == account.id)" @click="removePost(post.id)"
+          class="btn btn-danger delete-btn rounded-pill me-3"><i class="mdi mdi-delete"></i></button>
         <i class="align-self-end">❤ = {{ post.likeIds.length }}</i>
       </div>
     </div>
@@ -25,12 +27,19 @@
   </div>
 </template>
 
+
+
+
 <script>
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import { Post } from "../models/Post.js";
 import { RouterLink } from 'vue-router';
 import { useRoute } from 'vue-router';
+import { Account } from '../models/Account';
+import { logger } from '../utils/Logger';
+import Pop from '../utils/Pop';
+import { postsService } from '../services/PostsService';
 
 export default {
   props: {
@@ -40,11 +49,20 @@ export default {
     },
   },
   setup(props) {
-    const route = useRoute()
     return {
-      get ComputeFullDate() {
-        date.toLocaleDateString("en-us", { weekday: "long", year: "numeric", month: "short", day: "numeric" });
-      }
+      account: computed(() => AppState.account),
+      async removePost() {
+        try {
+          await postsService.removePost(props.post.id)
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error)
+        }
+      },
+      ComputeFullDate(date) {
+        return new Date(date).toLocaleDateString("en-us", { weekday: "long", year: "numeric", month: "short", day: "numeric" });
+      },
+
     };
   },
   components: { RouterLink }

@@ -4,6 +4,7 @@
   </header>
   <main>
     <router-view />
+    <AdCard />
   </main>
   <footer class="bg-info text-light">
     Welcome to.. The Network!
@@ -13,6 +14,7 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
+import AdCard from './components/AdCard.vue'
 import Navbar from './components/Navbar.vue'
 
 export default {
@@ -21,7 +23,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  components: { Navbar, AdCard }
 }
 </script>
 <style lang="scss">

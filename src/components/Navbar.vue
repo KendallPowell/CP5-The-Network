@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { AppState } from '../AppState';
 import Login from './Login.vue'
 export default {
   setup() {
