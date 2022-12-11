@@ -15,7 +15,6 @@
                 <!-- <h1>{{ AppState.activeProfile.github }}</h1> -->
                 <!-- <h1>{{ AppState.activeProfile.linkedin }}</h1> -->
                 <!-- <h1>{{ AppState.activeProfile.resume }}</h1> -->
-                <!-- <h1>{{ AppState.activeProfile.coverImg }}</h1> -->
                 <!-- <h1>{{ AppState.activeProfile.graduated }}</h1> -->
                 <!-- <h1>{{ AppState.activeProfile.class }}</h1> -->
 
