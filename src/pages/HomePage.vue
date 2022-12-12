@@ -6,6 +6,14 @@
         <PostCard :post="p" />
       </div>
     </section>
+    <section class="row justify-content-center">
+      <button class="col-4 btn btn-outline-danger" :disabled="(AppState.page == 1)" @click="previousPage()">
+        Previous Page</button>
+      <div class=" col-2 text-center">{{ AppState.page }} / {{ AppState.maxPage }}
+      </div>
+      <button class="col-4 btn btn-outline-primary" :disabled="(AppState.page == AppState.maxPage)"
+        @click="nextPage()">Next Page</button>
+    </section>
   </div>
 
 </template>
@@ -17,8 +25,25 @@ import { postsService } from '../services/PostsService.js';
 import { onMounted, computed } from "vue";
 import PostCard from '../components/PostCard.vue';
 import { AppState } from "../AppState.js";
-import { adsService } from "../services/AdsService";
 
+async function nextPage() {
+  try {
+    AppState.page++
+    await getPosts()
+  } catch (error) {
+    logger.log(error)
+    Pop.error(error.message)
+  }
+}
+async function previousPage() {
+  try {
+    AppState.page--
+    await getPosts()
+  } catch (error) {
+    logger.log(error)
+    Pop.error(error.message)
+  }
+}
 async function getPosts() {
   try {
     await postsService.getPosts()
@@ -27,17 +52,10 @@ async function getPosts() {
     Pop.error(error.message)
   }
 }
-async function getAds() {
-  try {
-    await adsService.getAds()
-  } catch (error) {
-    logger.log(error)
-    Pop.error(error.message)
-  }
-}
+
 onMounted(() => {
   getPosts();
-  getAds();
+  AppState.page = 1
 })
 
 </script>

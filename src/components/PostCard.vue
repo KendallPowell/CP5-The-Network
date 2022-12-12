@@ -14,7 +14,10 @@
       <div class="col-5 text-end">
         <button v-if="(post.creatorId == account.id)" @click="removePost(post.id)"
           class="btn btn-danger delete-btn rounded-pill me-3"><i class="mdi mdi-delete"></i></button>
-        <i class="align-self-end">❤ = {{ post.likeIds.length }}</i>
+        <i v-if="account.id" @click="likePost()" class="align-self-end selectable mdi mdi-heart text-primary"> = {{
+            post.likeIds.length
+        }}</i>
+        <i v-else="!account.id" class="align-self-end mdi mdi-heart text-dark"> = {{ post.likeIds.length }}</i>
       </div>
     </div>
     <div class="d-flex flex-column ">
@@ -54,6 +57,14 @@ export default {
       async removePost() {
         try {
           await postsService.removePost(props.post.id)
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error)
+        }
+      },
+      async likePost() {
+        try {
+          await postsService.likePost(props.post.id)
         } catch (error) {
           logger.error(error)
           Pop.error(error)

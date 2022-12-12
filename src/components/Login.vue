@@ -16,7 +16,12 @@
           <div class="list-group">
             <router-link :to="{ name: 'Account' }">
               <div class="list-group-item dropdown-item list-group-item-action">
-                My Profile
+                My Account
+              </div>
+            </router-link>
+            <router-link v-if="account.id" :to="{ name: 'Profile', params: { id: account.id } }">
+              <div class="list-group-item dropdown-item list-group-item-action">
+                Profile Page
               </div>
             </router-link>
             <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">

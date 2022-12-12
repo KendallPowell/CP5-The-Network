@@ -12,21 +12,29 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
       </ul>
+      <form @submit.prevent="doSearch" class="me-5">
+        <input type="text" name="query" placeholder="Looking for someone?">
+        <button class="btn btn-info"><i class="mdi mdi-magnify"></i></button>
+      </form>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
   </nav>
 </template>
 
-<script>
+<script setup>
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { AppState } from '../AppState';
 import Login from './Login.vue'
-export default {
-  setup() {
-    return {}
-  },
-  components: { Login }
+let router = useRouter()
+function doSearch() {
+  let query = window.event.target.query.value
+  router.push({ name: 'Search', query: { query: query } })
 }
+onMounted(() => {
+  router = useRouter()
+})
 </script>
 
 <style scoped>

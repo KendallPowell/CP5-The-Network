@@ -34,6 +34,7 @@ async function createPost() {
         }
         await postsService.createPost(rawPost)
         Pop.toast('Post Created!', 'success')
+        form.reset()
     } catch (error) {
         logger.error(error)
         Pop.error(error)

@@ -2,8 +2,8 @@
   <header>
     <Navbar />
   </header>
-  <main>
-    <router-view />
+  <main class="d-flex">
+    <router-view class="flex-grow-1" />
     <AdCard />
   </main>
   <footer class="bg-info text-light">

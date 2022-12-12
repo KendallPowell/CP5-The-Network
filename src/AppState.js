@@ -10,5 +10,8 @@ export const AppState = reactive({
   /** @type {import('./models/Account.js').Account} */
   activeProfile: null,
   /** @type {import('./models/Ad.js').Ad[]} */
-  ads: []
+  ads: [],
+  profiles: [],
+  page: 1,
+  maxPage: 10,
 })
