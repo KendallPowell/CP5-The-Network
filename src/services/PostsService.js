@@ -1,6 +1,7 @@
 import { AppState } from "../AppState.js"
 import { Post } from "../models/Post.js"
 import { logger } from "../utils/Logger.js"
+import Pop from "../utils/Pop.js"
 import { api } from "./AxiosService.js"
 
 
@@ -19,7 +20,6 @@ class PostsService {
     // logger.log('[get posts by creator]', res.data)
     AppState.posts = res.data.posts.map(p => new Post(p))
     AppState.maxPage = res.data.totalPages
-
   }
 
   async createPost(postData) {
@@ -35,6 +35,7 @@ class PostsService {
 
   async likePost(id) {
     const res = await api.post(`api/posts/${id}/like`)
+    AppState.posts.filter(p => p.id == p.id)
     logger.log(res.data)
   }
 
