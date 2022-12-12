@@ -3,7 +3,7 @@
         <div class="cover-img" :style="`background-image: url(${profile.coverImg})`">
             <div class="d-flex align-items-center">
                 <div class="col-3 m-2">
-                    <RouterLink :to="{ name: 'Profile', params: { id: profile } }">
+                    <RouterLink :to="{ name: 'Profile', params: { id: profile._id } }">
                         <img class="pic-img" :src="profile.picture" alt="no picture?">
                     </RouterLink>
                 </div>

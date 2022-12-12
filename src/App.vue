@@ -2,7 +2,7 @@
   <header>
     <Navbar />
   </header>
-  <main class="d-flex">
+  <main class="d-flex gap-2">
     <router-view class="flex-grow-1" />
     <AdCard />
   </main>
