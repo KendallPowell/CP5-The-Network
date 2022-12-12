@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
       </ul>
-      <form @submit.prevent="doSearch" class="me-5">
+      <form @submit.prevent="doSearch()" class="me-5">
         <input type="text" name="query" placeholder="Looking for someone?">
         <button class="btn btn-info"><i class="mdi mdi-magnify"></i></button>
       </form>
