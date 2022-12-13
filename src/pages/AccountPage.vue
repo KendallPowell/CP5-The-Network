@@ -1,9 +1,4 @@
 <template>
-  <!-- <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
-  </div> -->
 
   <div class="container-fluid">
     <div class="row justify-content-center">
